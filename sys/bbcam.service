@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=pi
 WorkingDirectory=/home/pi/bbcam
-ExecStart=/usr/local/bin/gunicorn -c /path/to/your/gunicorn_config.py main:app
+ExecStart=/usr/bin/python main.py
 
 [Install]
 WantedBy=multi-user.target
