@@ -1,0 +1,11 @@
+[Unit]
+Description=Service to run the video stream via flask
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/bbcam
+ExecStart=/usr/local/bin/gunicorn -c /path/to/your/gunicorn_config.py main:app
+
+[Install]
+WantedBy=multi-user.target
