@@ -48,8 +48,7 @@ def take_picture():
 @socketio.on('connect')
 def handle_connect():
     global n_clients
-    if n_clients == 0:
-        GPIO.output(IR_GPIO, GPIO.HIGH)
+    GPIO.output(IR_GPIO, GPIO.HIGH)
     n_clients += 1
 
 
@@ -58,6 +57,7 @@ def handle_disconnect():
     global n_clients
     n_clients -= 1
     if n_clients == 0:
+        print("no clientes, turn off IR")
         GPIO.output(IR_GPIO, GPIO.LOW)
 
 if __name__ == '__main__':
