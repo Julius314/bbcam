@@ -42,8 +42,8 @@ def video_feed():
 # Take a photo when pressing camera button
 @app.route('/picture')
 def take_picture():
-    picture_data = pi_camera.take_picture()
-    return Response(picture_data, mimetype='image/png')  # Return PNG data
+    picture_name, picture_data = pi_camera.take_picture()
+    return Response(picture_data, mimetype='image/png', headers={'Content-Disposition': f'attachment;filename={picture_name}.png'})
 
 @socketio.on('connect')
 def handle_connect():
