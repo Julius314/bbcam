@@ -6,7 +6,7 @@
 from flask import Flask, render_template, Response, request, send_from_directory
 from flask_socketio import SocketIO
 import RPi.GPIO as GPIO
-from camera import VideoCamera
+from modules.camera import VideoCamera
 import os
 
 pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
