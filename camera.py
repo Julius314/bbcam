@@ -36,5 +36,6 @@ class VideoCamera(object):
     def take_picture(self):
         frame = self.flip_if_needed(self.vs.read())
         ret, image = cv.imencode(self.file_type, frame)
-        today_date = datetime.now().strftime("%m%d%Y-%H%M%S") # get current time
-        cv.imwrite(str(self.photo_string + "_" + today_date + self.file_type), frame)
+        # today_date = datetime.now().strftime("%m%d%Y-%H%M%S") # get current time
+        # cv.imwrite(str(self.photo_string + "_" + today_date + self.file_type), frame)
+        return image.tobytes()
