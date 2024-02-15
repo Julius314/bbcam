@@ -23,7 +23,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(IR_GPIO, GPIO.OUT)
 GPIO.output(IR_GPIO, GPIO.LOW)
 
-DHT_GPIO = board.D27
+DHT_GPIO = board.D4
 dht_sensor = adafruit_dht.DHT11(DHT_GPIO)
 
 n_clients = 0
