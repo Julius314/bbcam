@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+#container {
+    position: relative;
+}
+
+img#video-stream {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+#capture-link {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffffaa;
+    box-shadow: 0 0px 1px 1px gray;
+    color: #fff;
+    padding: 6px;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+    line-height: 2em;
+    width: 2em;
+    text-align: center;
+}

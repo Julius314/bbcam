@@ -3,47 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
-    <style>
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-
-        #container {
-            position: relative;
-        }
-
-        img#video-stream {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        #capture-link {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #ffffffaa;
-            box-shadow: 0 0px 1px 1px gray;
-            color: #fff;
-            padding: 6px;
-            border-radius: 5px;
-            text-decoration: none; /* Remove underline */
-            cursor: pointer;
-            line-height: 2em;
-            width: 2em;
-            text-align: center;
-        }
-    </style>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='favicon/site.webmanifest') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_index.css')}}">    
     <title>BBCam</title>
 </head>
 <body>
