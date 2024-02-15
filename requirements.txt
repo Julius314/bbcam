@@ -4,4 +4,3 @@ numpy
 imutils
 RPi.GPIO
 gunicorn
-adafruit-circuitpython-dht
