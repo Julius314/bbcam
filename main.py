@@ -47,6 +47,12 @@ def take_picture():
     return Response(picture_data, mimetype='image/png', headers={'Content-Disposition': f'attachment;filename={picture_name}.png'})
 
 
+@app.route('/<path:path>', methods=['GET'])
+def static_proxy(path):
+  return send_from_directory('./static/', path)
+
+
+## socket connections
 @socketio.on('connect')
 def handle_connect():
     global n_clients
