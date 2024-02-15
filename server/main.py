@@ -59,7 +59,6 @@ def handle_connect():
     GPIO.output(IR_GPIO, GPIO.HIGH)
     n_clients += 1
 
-
 @socketio.on('disconnect')
 def handle_disconnect():
     global n_clients
@@ -67,6 +66,7 @@ def handle_disconnect():
     if n_clients == 0:
         print("no clientes, turn off IR")
         GPIO.output(IR_GPIO, GPIO.LOW)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=False, port=5005)

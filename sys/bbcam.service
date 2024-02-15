@@ -1,10 +1,10 @@
 [Unit]
-Description=Service to run the video stream via flask
+Description=bbcam Video Stream Service
 After=network.target
 
 [Service]
 User=pi
-WorkingDirectory=/home/pi/bbcam
+WorkingDirectory=/home/pi/bbcam/server
 ExecStart=/usr/bin/python main.py
 
 [Install]
