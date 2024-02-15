@@ -3,11 +3,9 @@
 #Desc: This web application serves a motion JPEG stream
 # main.py
 # import the necessary packages
-from flask import Flask, render_template, Response, request, send_from_directory, abort
+from flask import Flask, render_template, Response, request, send_from_directory
 from flask_socketio import SocketIO
 import RPi.GPIO as GPIO
-import board
-import adafruit_dht
 from modules.camera import VideoCamera
 import os
 
@@ -22,9 +20,6 @@ IR_GPIO = 17
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(IR_GPIO, GPIO.OUT)
 GPIO.output(IR_GPIO, GPIO.LOW)
-
-DHT_GPIO = board.D4
-dht_sensor = adafruit_dht.DHT11(DHT_GPIO)
 
 n_clients = 0
 
@@ -51,19 +46,6 @@ def take_picture():
     picture_name, picture_data = pi_camera.take_picture()
     return Response(picture_data, mimetype='image/png', headers={'Content-Disposition': f'attachment;filename={picture_name}.png'})
 
-@app.route('/dht')
-def read_dht():
-    try:
-        temp = sensor.temperature
-	humidity = sensor.humidity
-
-	return {
-	    "temp": temp,
-	    "humid": humidity
-	}
-    except RuntimeError as error:
-	print(error.args[0])
-	    abort(501)
 
 @socketio.on('connect')
 def handle_connect():
