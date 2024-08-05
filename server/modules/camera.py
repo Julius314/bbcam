@@ -31,7 +31,7 @@ class VideoCamera(object):
         return frame
 
     def get_frame(self):
-        frame = self.flip_if_needed(self.vs.read())
+        frame = self.flip_if_needed(self.vs.read()).copy()
         self.indicator_state = (self.indicator_state + 1) % 10
         gray_value = int(self.indicator_state * 255 / 9)  # Map to [0, 255]
 
