@@ -13,7 +13,8 @@
 <body>
      <div id="container">
          <img id="video-stream" src="{{ url_for('video_feed') }}" alt="Video Feed">
-         <a id="capture-link" href="#" >⟳</a>
+         <a id="capture-link" href="#" >📷</a>
+         <a id="reload-link" href="#" >⟳</a>
      </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js"></script>
     <script>
@@ -25,7 +26,7 @@
             console.log('Disconnected from WebSocket');
         });
         
-        document.getElementById('capture-link').addEventListener('click', function(event) {
+        document.getElementById('reload-link').addEventListener('click', function(event) {
             event.preventDefault();
             location.reload(); // Reload the page
         });
