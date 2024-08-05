@@ -11,11 +11,15 @@ import numpy as np
 
 class VideoCamera(object):
     def __init__(self, flip = False, file_type  = ".jpg", photo_string= "stream_photo"):
-        self.vs = PiVideoStream(resolution=(800, 608), framerate=30).start()
+        resolution = (800, 608)
+        self.vs = PiVideoStream(resolution=resolution, framerate=30).start()
         # self.vs = PiVideoStream().start()
         self.flip = flip # Flip frame vertically
         self.file_type = file_type # image type i.e. .jpg
         self.photo_string = photo_string # Name to save the photo
+        self.indicator_state = 0
+
+        self.width, self.height = resolution
         time.sleep(2.0)
 
     def __del__(self):
@@ -28,6 +32,11 @@ class VideoCamera(object):
 
     def get_frame(self):
         frame = self.flip_if_needed(self.vs.read())
+        self.indicator_state = (self.indicator_state + 1) % 10
+        gray_value = int(self.indicator_state * 255 / 9)  # Map to [0, 255]
+
+        frame[self.height - 1, 0] = [gray_value, gray_value, gray_value]
+        
         ret, jpeg = cv.imencode(self.file_type, frame)
         self.previous_frame = jpeg
         return jpeg.tobytes()
