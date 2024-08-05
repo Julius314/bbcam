@@ -17,12 +17,8 @@ img#video-stream {
     display: block;
 }
 
-#capture-link {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #ffffffaa;
+.button-class {
+    background-color: #616161aa;
     box-shadow: 0 0px 1px 1px gray;
     color: #fff;
     padding: 6px;
@@ -32,4 +28,17 @@ img#video-stream {
     line-height: 2em;
     width: 2em;
     text-align: center;
+}
+
+#reload-link {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+#capture-link {
+    position: absolute;
+    top: 2px;
+    right: 35px;
+
 }
