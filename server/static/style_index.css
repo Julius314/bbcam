@@ -39,6 +39,5 @@ img#video-stream {
 #capture-link {
     position: absolute;
     top: 2px;
-    right: 35px;
-
+    right: calc(2em + 4px);
 }
