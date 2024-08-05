@@ -13,8 +13,8 @@
 <body>
      <div id="container">
          <img id="video-stream" src="{{ url_for('video_feed') }}" alt="Video Feed">
-         <a id="capture-link" href="{{ url_for('take_picture') }}" download="image.png" >📷</a>
-         <a id="reload-link" href="#" >⟳</a>
+         <a id="capture-link" class="button-class" href="{{ url_for('take_picture') }}" download="image.png" >📷</a>
+         <a id="reload-link" class="button-class" href="#" >⟳</a>
      </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js"></script>
     <script>
