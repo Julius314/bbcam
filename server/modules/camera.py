@@ -35,7 +35,7 @@ class VideoCamera(object):
         self.indicator_state = (self.indicator_state + 1) % 10
         gray_value = int(self.indicator_state * 255 / 9)  # Map to [0, 255]
 
-        frame[self.height - 1, 0] = [gray_value, gray_value, gray_value]
+        frame[self.height - 10:self.height, 0:10] = [gray_value, gray_value, gray_value]
         
         ret, jpeg = cv.imencode(self.file_type, frame)
         self.previous_frame = jpeg
