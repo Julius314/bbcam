@@ -31,7 +31,7 @@ def gen(camera):
     while True:
         try:
             frame = camera.get_frame()
-            logger.debug("Frame generated successfully.")
+            #logger.debug("Frame generated successfully.")
         except Exception as e:
             logger.error(f"Error generating frame: {e}")
             frame = camera.get_error_frame()
@@ -42,7 +42,7 @@ def gen(camera):
 
 @app.route('/')
 def index():
-    logger.info("Rendering index page.")
+    #logger.info("Rendering index page.")
     return render_template('index.html')
 
 
