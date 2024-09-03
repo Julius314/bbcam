@@ -7,7 +7,7 @@ import os
 import time
 
 # Configure logging to output to a file
-logging.basicConfig(filename='bbcam_app.log', level=logging.DEBUG,
+logging.basicConfig(filename='app.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
 
@@ -42,3 +42,50 @@ def gen(camera):
 
 @app.route('/')
 def index():
+    logger.info("Rendering index page.")
+    return render_template('index.html')
+
+
+@app.route('/video_feed')
+def video_feed():
+    logger.info("Video feed requested.")
+    return Response(gen(pi_camera),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
+# Take a photo when pressing camera button
+@app.route('/picture')
+def take_picture():
+    logger.info("Picture requested.")
+    picture_name, picture_data = pi_camera.take_picture()
+    logger.info(f"Picture taken: {picture_name}")
+    return Response(picture_data, mimetype='image/png', headers={'Content-Disposition': f'attachment;filename={picture_name}.png'})
+
+
+@app.route('/<path:path>', methods=['GET'])
+def static_proxy(path):
+    logger.info(f"Static file requested: {path}")
+    return send_from_directory('./static/', path)
+
+
+## socket connections
+@socketio.on('connect')
+def handle_connect():
+    global n_clients
+    n_clients += 1
+    logger.info(f"Client connected. Total clients: {n_clients}")
+    GPIO.output(IR_GPIO, GPIO.HIGH)
+    logger.debug("IR LED turned ON.")
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    global n_clients
+    n_clients -= 1
+    logger.info(f"Client disconnected. Total clients: {n_clients}")
+    if n_clients == 0:
+        logger.info("No clients connected, turning off IR LED.")
+        GPIO.output(IR_GPIO, GPIO.LOW)
+        logger.debug("IR LED turned OFF.")
+
+if __name__ == '__main__':
+    logger.info("Starting Flask app on host 0.0.0.0, port 5005")
+    app.run(host='0.0.0.0', debug=False, port=5005)
