@@ -39,14 +39,14 @@ class VideoCamera(object):
     def get_frame(self):
         try:
             frame = self.flip_if_needed(self.vs.read()).copy()
-            logger.debug("Frame read from camera.")
+            #logger.debug("Frame read from camera.")
             self.indicator_state = (self.indicator_state + 1) % 10
             gray_value = int(self.indicator_state * 255 / 9)  # Map to [0, 255]
 
             frame[self.height - 10:self.height, 0:10] = [gray_value, gray_value, gray_value]
 
             ret, jpeg = cv.imencode(self.file_type, frame)
-            logger.debug("Frame encoded to JPEG format.")
+            #logger.debug("Frame encoded to JPEG format.")
             return jpeg.tobytes()
         except Exception as e:
             logger.error(f"Error getting frame: {e}")
